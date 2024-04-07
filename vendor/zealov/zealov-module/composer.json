@@ -1,0 +1,32 @@
+{
+    "name": "zealov/zealov-module",
+    "description": "zealov",
+    "type": "library",
+    "keywords": [
+        "laravel",
+        "laravel-module",
+        "admin"
+    ],
+    "homepage": "https://github.com/zealov/zealov-module",
+    "authors": [
+        {
+            "name": "zealov",
+            "email": "921491025@qq.com"
+        }
+    ],
+    "license": "Apache 2.0",
+    "autoload": {
+        "psr-4": {
+            "Zealov\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Zealov\\ZealovServiceProvider"
+            ]
+        }
+    }
+}

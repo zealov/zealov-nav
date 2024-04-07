@@ -1,0 +1,639 @@
+/*
+*@Description: 基本布局
+*/
+
+@charset "utf-8";
+
+/* 防止用户自定义背景颜色对网页的影响 */
+html {
+  color: #333333;
+  background: #fff;
+}
+
+/* 始终不显示滚动条 */
+body {
+  overflow-x: hidden; /*隐藏水平滚动条*/
+  overflow-y: hidden; /*隐藏垂直滚动条*/
+  line-height: 1.5;
+}
+
+/* Webkit内核滚动条样式定义 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background-color: white;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  box-shadow:inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: rgba(176,178,180,.4);
+  border-radius: 4px;
+  width: 6px;
+  height: 6px;
+  cursor: pointer;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(176,178,180,.6);
+}
+
+/* 内外边距重置 */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section ,*{
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body, button, input, select, textarea {
+  font-family: 'Hiragino Sans GB', 'Hiragino Sans GB W3', 'Microsoft Yahei', '微软雅黑', Tahoma, Arial, Helvetica, STHeiti;
+  font-size: 14px;
+  word-wrap: break-word;
+  color: #333333;
+}
+
+input, select, textarea {
+  font-size: 100%;
+}
+
+div:focus {
+  outline: none;
+}
+
+/* 去掉各Table  cell 的边距并让其边重合 */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* IE bug fixed: th 不继承 text-align*/
+th {
+  text-align: inherit;
+}
+
+/* 去除默认边框 */
+fieldset, img {
+  border: 0;
+}
+
+/* ie6 7 8(q) bug 显示为行内表现 */
+iframe {
+  display: block;
+}
+
+/* 去掉 firefox 下此元素的边框 */
+abbr, acronym {
+  border: 0;
+  font-variant: normal;
+}
+
+/* 一致的 del 样式 */
+del {
+  text-decoration: line-through;
+}
+
+address, caption, cite, code, dfn, em, th, var {
+  font-style: normal;
+  font-weight: 500;
+}
+
+/* 去掉列表前的标识, li 会继承 */
+ol, ul, li {
+  list-style: none;
+}
+
+/* 左对齐排版 */
+caption, th {
+  text-align: left;
+}
+
+/* 让标题都自定义 */
+h1, h2, h3, h4, h5, h6 {
+  font-size: 100%;
+  font-weight: 500;
+}
+
+q:before, q:after {
+  content: '';
+}
+
+/* 统一上标和下标 */
+sub, sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+/* 让链接在 hover 状态下不显示下划线 */
+a{
+  color: inherit;
+}
+a:hover {
+  text-decoration: none;
+}
+
+a:visited {
+  color: inherit;
+}
+
+/* 默认不显示下划线 */
+ins, a {
+  text-decoration: none;
+}
+
+/* button的cursor属性 */
+button, a {
+  outline: none;
+  cursor: pointer;
+}
+
+/*hr统一样式*/
+hr {
+  height: 1px;
+  border: none;
+  border-top: 1px solid #CCCCCC;
+}
+
+.flex{
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+/*common*/
+.el-container{
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: #273043;
+}
+.el-main{
+  padding: 0;
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/*top_bar*/
+.top_bar{
+  background: #fff;
+  width: 100%;
+  justify-content: space-between;
+  -ms-align-items: center;
+  align-items: center;
+  padding: 0 20px;
+}
+.top_bar .top_title{
+  font-size: 20px;
+  color: #252525;
+}
+
+.top_bar_left{
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -ms-align-items: center;
+  align-items: center;
+}
+.top_bar .toggle-button{
+  font-size: 18px;
+  padding-right: 15px;
+  cursor: pointer;
+}
+.top_bar .toggle-button:hover{
+  color: #009FE9;
+}
+
+.top_bar .top_bar_right{
+  line-height: 1;
+  -ms-align-items: center;
+  align-items: center;
+  color: #606266;
+}
+.top_bar .top_bar_right .flex{
+  -ms-align-items: center;
+  align-items: center;
+}
+.top_bar .site-nav{
+  margin-right: 20px;
+}
+
+.top_bar .site-nav .line{
+  position: relative;
+  top: 2px;
+  margin: 0 6px;
+  font-size:12px ;
+}
+.top_bar .site-nav .el-link.el-link--default.active {
+  color: #409EFF;
+}
+.top_bar .site-nav .el-link--inner{
+  font-size: 18px;
+}
+.top_bar .site-nav .home{
+  margin-right: 20px;
+}
+.top_bar .site-nav .home .el-link--inner{
+  font-size: 14px;
+}
+.top_bar .top_bar_right .avatar{
+  -ms-align-items: center;
+  align-items: center;
+  cursor: pointer;
+}
+.top_bar .top_bar_right .avatar_img{
+  width:30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #DEDFE6;
+  overflow: hidden;
+  display: inline-block;
+}
+.top_bar .top_bar_right .avatar_img img{
+  width: 100%;
+}
+
+.top_bar .top_bar_right .avatar_name{
+  margin-left: 10px;
+}
+
+.el-dropdown-menu__item:focus,
+.el-dropdown-menu__item:not(.is-disabled):hover{
+  color: #009FE9;
+}
+
+/*top_bar_help*/
+.top_bar .top_bar_help{
+  margin-left: 20px;
+  cursor: pointer;
+}
+.top_bar .top_bar_help .iconfont{
+  font-size: 18px;
+  vertical-align: middle;
+}
+.top_bar .top_bar_help .icon_arrow_left,
+.top_bar .top_bar_help .icon_arrow_right{
+  margin-left: 20px;
+}
+/*top_bar_help END*/
+/*help_doc*/
+.help_doc{
+  height: 100%;
+  background: #fff;
+  z-index: 999;
+  -webkit-transition: margin .3s ease 0s;
+  -o-transition: margin .3s ease 0s;
+  transition: margin .3s ease 0s;
+  border-left: 1px solid #EBEEF5;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  width: 240px;
+}
+.help_doc .el-scrollbar {
+  position: absolute;
+  top: 70px;
+  left: 0;
+  bottom: 0;
+  width: 240px;
+  overflow: hidden;
+}
+.help_doc .el-scrollbar .el-scrollbar__wrap {
+  overflow-x: hidden;
+}
+.help_doc .el-scrollbar__bar.is-horizontal{
+  display: none;
+}
+
+.help_doc .el-drawer__header{
+  padding: 22px 20px;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 0;
+}
+.help_doc .el-drawer__header span{
+  color: #333;
+  outline: none;
+  padding-left: 24px;
+  position: relative;
+  line-height: 1.1;
+}
+.help_doc .el-drawer__header span:after{
+  content: "\e635";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  font-size: 18px;
+  margin-top: -9px;
+  font-family: "iconfont";
+}
+.help_doc .el-icon-close{
+  font-size: 18px;
+}
+.help_doc .el-icon-close:before{
+  content: '\e639';
+  font-family: "iconfont";
+}
+
+.help_doc .help_doc_main{
+  padding: 20px;
+}
+.help_doc .help_doc_main>*:first-child{
+  margin-top: 0!important;
+}
+.help_doc .help_doc_main .text_title{
+  font-weight: bold;
+  margin: 15px 0;
+}
+.help_doc .help_doc_main .el-collapse{
+  border: 0;
+}
+.help_doc .help_doc_main .el-collapse-item__header{
+  border: 0;
+  height: auto;
+  line-height: 1.5;
+  padding: 10px 0;
+}
+.help_doc .help_doc_main .el-collapse-item__content{
+  color: #7A7F89;
+  font-size: 13px;
+}
+.help_doc .help_doc_main p,
+.help_doc .help_doc_main li{
+  margin-bottom: 10px;
+}
+
+/*scrollbar*/
+.el-scrollbar__thumb{
+  background-color: rgba(144,147,153,.5);
+}
+.el-scrollbar__thumb:hover{
+  background-color: rgba(144,147,153,.75);
+}
+
+.el-scrollbar__bar.is-vertical{
+  width: 5px;
+}
+/*scrollbar END*/
+/*top_bar END*/
+
+
+/*left_side*/
+.el-aside{
+  height: 100%;
+  width: 210px!important;
+}
+.el-aside.collapse{
+  width: 64px!important;
+}
+.left_side .logo_container{
+  height: 50px;
+  line-height: 50px;
+  //padding: 15px 10px;
+  text-align: center;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -ms-align-items: center;
+  align-items: center;
+  /*border-bottom: 1px solid rgba(255,255,255,.15);*/
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #fff;
+  text-align: center;
+  font-size: 18px;
+  justify-content: center;
+}
+.left_side .logo_container img{
+  max-width: 100%;
+  max-height: 40px;
+  vertical-align: middle;
+}
+.el-aside .logo_thumb,
+.el-aside.collapse .logo_container{
+  display: none;
+}
+.el-aside.collapse .logo_container.logo_thumb{
+  display: block;
+  line-height: 40px;
+}
+.el-aside.collapse .logo_container.logo_thumb img{
+  height: auto;
+}
+
+.left_side .el-scrollbar{
+  position: absolute;
+  top: 50px;
+  left: 0;
+  bottom: 0;
+  width: 210px;
+  overflow: hidden;
+  background-color: #304156
+
+}
+.left_side .el-scrollbar .el-scrollbar__wrap {
+  overflow-x: hidden;
+}
+.left_side .el-scrollbar .el-scrollbar__bar.is-horizontal{
+  display: none;
+}
+.left_side .el-scrollbar .el-scrollbar__thumb{
+  background-color: rgba(176,178,180,.4);
+}
+.left_side .el-scrollbar .el-scrollbar__thumb:hover{
+  background-color: rgba(176,178,180,.6);
+}
+
+.left_side .menu_vertical{
+  border-right: 0;
+}
+.left_side .menu_vertical .iconfont{
+  padding-right: 5px;
+  font-size: 16px;
+}
+.left_side .menu_vertical a{
+  display: block;
+}
+.left_side .menu_vertical .el-menu-item.is-active{
+  background-color: rgba(0,0,0,0)!important;
+}
+/*left_side END*/
+
+
+/*main_content*/
+.main_content{
+  position: absolute;
+  top: 60px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  /*background: #F5F7FA;*/
+  background: #EBEEF5;
+}
+.content_container{
+  background: #fff;
+  border-radius: 3px;
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  top: 10px;
+  bottom: 10px;
+  overflow: hidden;
+}
+.content_container.no-bg{
+  background: none;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+.content_container.no-bg>.el-scrollbar>.el-scrollbar__wrap>.el-scrollbar__view{
+  padding: 10px;
+}
+
+.content_container .el-scrollbar{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.content_container .el-scrollbar .el-scrollbar__wrap {
+  overflow-x: hidden;
+}
+.content_container .el-scrollbar .el-scrollbar__bar.is-horizontal{
+  display: none;
+}
+.container{
+  padding: 20px;
+}
+.container h1{
+    font-size: 30px;
+    font-weight: 300;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    line-height: 1.1;
+    color: inherit;
+}
+.container p{
+    font-size: 20px;
+    margin: 0 0 20px;
+    display: block;
+    font-weight: 300;
+}
+.main_content .container>*:first-child{
+  margin-top: 0;
+}
+/*content_container END*/
+
+.menu_toggle{
+  display: none;
+}
+.left_side.menu_mobile{
+  display: none;
+}
+/*common END*/
+.el-menu-item {
+  font-size: 15px;
+}
+.myTab{
+  padding-top: 10px;
+  padding-left: 10px;
+  height: 100%;
+}
+.myTab .is-left {
+  width: 200px;
+  font-size: 14px;
+  text-align: left !important;
+  color: #252631;
+}
+
+.myTab .el-tabs__item {
+  height: 70px;
+  line-height: 70px;
+  border-bottom: 1px solid #F2F4F6;
+  padding-left: 58px;
+}
+
+.myTab .is-active {
+  background-color: #EDF5FF;
+  color: #016AED;
+}
+
+.sortStyle {
+  width: 40px;
+  height: 30px;
+  border-radius: 4px;
+  border: 1px solid #DCDFE6;
+  text-align: center;
+  line-height: 30px;
+  margin: 0 auto;
+}
+.myTab.el-tabs--left .el-tabs__header.is-left{
+  margin-right: 1px;
+}
+
+.marketing_content{
+  height: 100%;
+  margin-left: 10px;
+  padding-right: 10px;
+}
+.el-form{
+  .el-form-item {
+    margin-bottom: 23px ;
+  }
+}
+
+// empty-wrap
+.empty-wrap {
+    text-align: center;
+    color: #989898;
+    width: 100%;
+    height: 90%;
+    padding: 15px;
+}
+.empty-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #fff;
+    padding: 20px;
+    color: #989898;
+    text-align: center;
+
+    .img-box {
+        // margin-bottom: 20px;
+        img {
+            max-width: 300px;
+        }
+    }
+
+    .el-button {
+        margin: 20px 0 40px;
+    }
+}
+
+// empty-wrap END
+
+.el-table td.el-table__cell, .el-table th.el-table__cell.is-leaf {
+    border-bottom: 1px solid #ebeef5;
+}

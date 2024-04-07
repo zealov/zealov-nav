@@ -1,0 +1,185 @@
+/*tabs*/
+.tabs{
+  padding: 0 20px;
+}
+.tabs .el-tabs__nav-wrap::after{
+  left: -20px;
+  right: -20px;
+  width: unset;
+}
+.tabs .el-tabs__nav-wrap{
+  overflow: unset;
+}
+.tabs .el-tabs__nav-prev{
+  left: -10px;
+}
+.tabs .el-tabs__nav-next{
+  right: -10px;
+}
+.tabs .el-tabs__header{
+  margin-bottom: 0;
+}
+.tabs .el-tabs__item{
+  height: auto;
+  line-height: 1.5;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  font-size: 16px;
+}
+.tabs .el-tabs__nav-wrap::after{
+  height: 1px;
+}
+
+.tabs .el-tabs__content{
+  position: static;
+}
+.tabs.fixed-top .el-tab-pane{
+  position: absolute;
+  left: 0;
+  top: 54px;
+  bottom: 0;
+  right: 0;
+}
+.tabs .el-tabs__nav-next,
+.tabs .el-tabs__nav-prev{
+  line-height: 54px;
+  font-size: 16px;
+}
+/*tabs END*/
+
+
+/*el-table*/
+.el-table:before{
+  content: none;
+}
+
+.el-table thead{
+  font-weight: bold;
+}
+.el-table__header thead th {
+  background-color: #F5F7FA;
+}
+
+.el-table th .cell{
+  font-weight: bold;
+}
+.el-table .el-table__body td
+.el-table .el-table__body .el-button--mini,
+.el-table .el-table__body .el-button--small{
+  font-size: 13px;
+}
+.el-table .table_header_icon{
+  cursor: pointer;
+  font-size: 15px;
+  color: #C7CFD8;
+}
+.el-table .table_header_icon:hover{
+  color: #409EFF;
+}
+
+.el-button+.el-switch,
+.el-switch+.el-button {
+  margin-left: 10px;
+}
+.el-table__fixed-right:before, .el-table__fixed:before{
+  content: none;
+}
+.el-tooltip__popper{
+  max-width: 640px;
+  line-height: 1.5;
+}
+@media screen and (max-width: 767px) {
+  .el-tooltip__popper{
+    max-width: 90%;
+  }
+}
+/*el-table END*/
+
+/*popover*/
+.el-popover{
+  font-size: 13px;
+}
+/*popover END*/
+
+/*dialog_tc*/
+.el-dialog__headerbtn,
+.el-message-box__headerbtn{
+  font-size: 18px;
+}
+.el-message-box{
+  width: 360px;
+}
+.dialog_tc .el-dialog__body{
+  padding: 20px;
+}
+.dialog_tc .tc_transfer{
+  text-align: center;
+  margin-bottom: 15px;
+}
+.dialog_tc .el-form-item{
+  margin-bottom: 12px;
+}
+.dialog_tc .el-cascader, .dialog_tc .el-select, .dialog_tc .el-date-editor{
+  width: 100%;
+}
+.el-message-box--center .el-message-box__status {
+  font-size: 50px!important;
+}
+
+/*弹窗居中*/
+.el-dialog{
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  -o-flex-direction: column;
+  flex-direction: column;
+  margin:0 !important;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  /*height:600px;*/
+  max-height:calc(100% - 30px);
+  max-width:calc(100% - 30px);
+}
+.el-dialog .el-dialog__body{
+  -webkit-flex: 1;
+  -moz-flex: 1;
+  -ms-flex: 1;
+  -o-flex: 1;
+  flex: 1;
+  overflow: auto;
+}
+/*dialog_tc END*/
+
+/* flex */
+.flex{
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+/* flex END */
+
+.el-submenu__icon-arrow{
+  margin-top: -4px;
+}
+.el-table .el-table__cell{
+  padding: 5px 0;
+}
+.el-table th.el-table__cell{
+  padding: 8px 0;
+  background-color: #F5F7FA;
+}
+
+.el-loading-mask.is-fullscreen {
+  z-index: 10000!important;
+}
