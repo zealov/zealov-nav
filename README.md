@@ -1,4 +1,4 @@
-## 更新日志2023年03月29
+<h1 align="center">zealov-nav</h1>
 * 基于laravel+vue的基础后台, 前后端分离, 欢迎fork&start&pull requests
 ## 搭建
 #### 安装
