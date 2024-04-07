@@ -9,10 +9,12 @@
 
 namespace Zealov\Controllers\Api;
 
+use App\Http\Requests\Admin\Admin\UpdatePasswordRequest;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use MarcinOrlowski\ResponseBuilder\ResponseBuilder;
 use Symfony\Component\HttpFoundation\Response;
 use Tymon\JWTAuth\Exceptions\JWTException;
@@ -174,5 +176,44 @@ class AuthController extends Controller
             ->build();
     }
 
+    /**
+     * 修改密码
+     * @return Response
+     */
+    public function updatePassword(Request $request)
+    {
+        $validator = $this->validatePassword($request);
+        if ($error = $validator->errors()->first()) {
+            return ResponseBuilder::asError(ApiCode::HTTP_UNPROCESSABLE_ENTITY)
+                ->withHttpCode(ApiCode::HTTP_UNPROCESSABLE_ENTITY)
+                ->withData($validator->errors())
+                ->withMessage(__($error))
+                ->build();
+        }
+        $userInfo = Auth::user();
+        if ($userInfo->update(['password' => Hash::make($request->get('password')), 'salt' => uniqid()])) {
+            return ResponseBuilder::asSuccess(ApiCode::HTTP_OK)
+                ->withHttpCode(ApiCode::HTTP_OK)
+                ->withData()
+                ->withMessage(__('message.common.update.success'))
+                ->build();
+        }
+        return ResponseBuilder::asError(ApiCode::HTTP_BAD_REQUEST)
+            ->withHttpCode(ApiCode::HTTP_BAD_REQUEST)
+            ->withData()
+            ->withMessage(__('message.common.update.fail'))
+            ->build();
+    }
+    protected function validatePassword(Request $request)
+    {
+        $rules = [
+            'password'=>['required','min:6','max:20']
+        ];
+        $message = [
+            'password.required'=> '密码不能为空',
+        ];
+        return \Validator::make($request->all(), $rules, $message);
+
+    }
 
 }

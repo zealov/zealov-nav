@@ -31,3 +31,10 @@ export function captcha (data) {
         data
     })
 }
+export function updatePassword(data) {
+    return request({
+        url: '/updatePassword',
+        method: 'post',
+        data
+    })
+}

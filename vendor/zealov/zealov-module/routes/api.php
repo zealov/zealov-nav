@@ -10,5 +10,6 @@ Route::post('refresh', [\Zealov\Controllers\Api\AuthController::class, 'refresh'
 Route::middleware('auth:admin')->group(function () {
     Route::post('me', [\Zealov\Controllers\Api\AuthController::class, 'getUserInfo']);
     Route::post('logout', [\Zealov\Controllers\Api\AuthController::class, 'logout']);
+    Route::post('updatePassword', [\Zealov\Controllers\Api\AuthController::class, 'updatePassword']);
 });
 

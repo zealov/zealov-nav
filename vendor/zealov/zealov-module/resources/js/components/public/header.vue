@@ -14,6 +14,7 @@
                     <i class="el-icon-arrow-down"/>
                 </div>
                 <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item @click.native="personal()">个人信息</el-dropdown-item>
                     <el-dropdown-item divided @click.native="logout()">
                         <span style="display:block;">退出登录</span>
                     </el-dropdown-item>
@@ -52,6 +53,9 @@ export default {
         async logout() {
             await this.$store.dispatch('user/logout')
             window.location.href = '/admin/login?redirect=' + `${this.$route.fullPath}`
+        },
+        personal(){
+            this.$router.push({ name: 'admin.iframe.personal.index' })
         }
     }
 }
