@@ -45,7 +45,6 @@ class AppStoreUtil
                 $modules[$remote['name']] = $remote;
             }
         }
-
         foreach(ModuleManage::listModules() as $m => $config){
             $info = ModuleManage::getModuleBasic($m);
             if (isset($modules[$m])) {

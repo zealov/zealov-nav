@@ -11,14 +11,16 @@ class Category extends Model
     use SoftDeletes;
 
     public $table = 'categories';
-    protected $fillable = ['name', 'sort', 'parent_id', 'label', 'published', 'description', 'image_path'];
+    protected $fillable = ['name', 'sort', 'parent_id', 'label', 'published', 'description', 'image_path','place'];
 
     public static function getList(array $validated)
     {
         $parent_id = $validated['parent_id'] ?? 0;
         $categories = [];
         $model = self::select(['*']);
-
+        $model = $model->when($validated['place']??NULL,function($query)use($validated){
+            $query->where('place',$validated['place']);
+        });
         $t = $model->orderBy('sort')->get()->toArray();
         $label = $validated['label'] ?? 0;
         if ($label) {

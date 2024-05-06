@@ -6,6 +6,7 @@ namespace Zealov\Controllers;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\View;
 use Zealov\Exception\ThrowException;
+use Zealov\Kernel\Provider\SiteTemplate\SiteTemplateProvider;
 use Zealov\Models\SystemConfig;
 
 class ZealovBaseController extends Controller
@@ -32,18 +33,23 @@ class ZealovBaseController extends Controller
     {
         $viewThemeCustom = "theme.$templateName.$device.$view";
         $viewTheme = "$templateRoot.$device.$view";
+
         if ($module) {
             $viewModule = "module::$module.View.$device.$view";
         }
+
         $viewDefault = "theme.default.$device.$view";
         if (view()->exists($viewThemeCustom)) {
+
             return $viewThemeCustom;
         }
         if (view()->exists($viewTheme)) {
+
             return $viewTheme;
         }
         if ($module) {
             if (view()->exists($viewModule)) {
+
                 return $viewModule;
             }
         }
@@ -57,9 +63,17 @@ class ZealovBaseController extends Controller
     {
         $module = $this->getModule();
 
-        $templateName = SystemConfig::query()->where('key', 'siteTemplate')->value('value')??"default";
+        $templateName = SystemConfig::query()->where('key', 'webNavTemplate')->value('value')??"default";
 
-        $templateRoot = "theme.$templateName";
+        $provider = SiteTemplateProvider::get($templateName);
+
+        if ($provider && $provider->root()) {
+
+            $templateRoot = $provider->root();
+            $templateName = $provider->name();
+        } else {
+            $templateRoot = "theme.$templateName";
+        }
 
         $useView = $this->fetchViewPath($templateName, $templateRoot, $module, 'web', $view);
 
@@ -76,6 +90,7 @@ class ZealovBaseController extends Controller
     protected function view($view, $viewData = [])
     {
         list($view, $frameView) = $this->viewPaths($view);
+
         return view($view, $viewData);
     }
 

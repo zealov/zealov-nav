@@ -15,6 +15,7 @@ use MarcinOrlowski\ResponseBuilder\ResponseBuilder;
 use Module\WebNav\Models\Config;
 use Module\WebNav\Requests\Api\Config\CreateRequest;
 use Module\WebNav\Requests\Api\Config\UpdateRequest;
+use Zealov\Kernel\Provider\SiteTemplate\SiteTemplateProvider;
 use Zealov\Kernel\Response\ApiCode;
 
 class ConfigController extends Controller
@@ -65,6 +66,22 @@ class ConfigController extends Controller
         return ResponseBuilder::asSuccess(ApiCode::HTTP_OK)
             ->withHttpCode(ApiCode::HTTP_OK)
             ->withData(Config::find($id)->toArray())
+            ->withMessage(__('message.common.search.success'))
+            ->build();
+    }
+
+    public function siteTemplate(Request $request){
+        $config_value = $request->get('config_value');
+        $data = [];
+        $allSiteTemplate = SiteTemplateProvider::all();
+
+        foreach($allSiteTemplate as $key=>$value){
+            $data[$key]['label'] = $value->title();
+            $data[$key]['value'] = $value->name();
+        }
+        return ResponseBuilder::asSuccess(ApiCode::HTTP_OK)
+            ->withHttpCode(ApiCode::HTTP_OK)
+            ->withData(['data'=>$data])
             ->withMessage(__('message.common.search.success'))
             ->build();
     }

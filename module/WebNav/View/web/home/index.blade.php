@@ -1,5 +1,6 @@
 @extends($_viewFrame)
 @section('body')
+    {!! \Zealov\Zealov::css('asset/layui/css/layui.css') !!}
     <style>
         body {
             background-color: #f9f9f9;

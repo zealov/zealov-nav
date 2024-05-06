@@ -184,6 +184,15 @@
                     >
                     </el-switch>
                 </el-form-item>
+                <el-form-item
+                    prop="published"
+                    label="导航位置"
+                    :error="updateError.plice ? updateError.plice[0] : ''"
+                >
+                    <el-radio v-model="createCategoryForm.place" label="sidebar">侧栏</el-radio>
+                    <el-radio v-model="createCategoryForm.place" label="main">主导航</el-radio>
+
+                </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
         <el-button @click="createCategoryVisible = false">取消</el-button>
@@ -314,6 +323,15 @@
                     >
                     </el-switch>
                 </el-form-item>
+                <el-form-item
+                    prop="published"
+                    label="导航位置"
+                    :error="updateError.plice ? updateError.plice[0] : ''"
+                >
+                    <el-radio v-model="updateCategoryForm.place" label="sidebar">侧栏</el-radio>
+                    <el-radio v-model="updateCategoryForm.place" label="main">主导航</el-radio>
+
+                </el-form-item>
             </el-form>
             <span slot="footer" class="dialog-footer">
         <el-button @click="updateCategoryVisible = false">取消</el-button>
@@ -358,8 +376,9 @@ export default {
                 parent_id: [0],
                 image_path: "",
                 description: "",
-                published: true,
+                published: '1',
                 sort: 0,
+                place:"sidebar",
             },
             updateCategoryForm: {
                 id: "",
@@ -370,6 +389,7 @@ export default {
                 description: "",
                 published: "",
                 sort: "",
+                place:""
             },
         }
     },

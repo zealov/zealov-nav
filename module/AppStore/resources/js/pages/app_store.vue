@@ -36,16 +36,19 @@
             <el-row  :gutter="20">
                 <el-col :span="6" v-for="(module, moduleIndex) in filterModules" :key="o">
                     <el-card :body-style="{ padding: '0px' }">
-                        <el-image :src="module.cover" style=" max-height: 200px;width: 100%" fit="cover"></el-image>
+                        <a :href="module.url" target="_blank"><el-image :src="module.cover" style=" max-height: 200px;width: 100%" fit="cover"></el-image></a>
                         <div style="padding: 14px;">
                             <b>{{ module.title }} </b><span class="red p-5">{{module.price ? '￥' + module.price : '免费'}}</span><span>版本：V{{ module.latestVersion }}</span>
-                            <div class="bottom clearfix" style="margin-top: 10px">
-                                <el-button type="primary" icon="el-icon-plus" plain size="mini">其他版本</el-button>
-                            </div>
+
                             <div v-if="!module._isSystem" style="margin-top: 10px">
                                 <div v-if="!module._isInstalled">
                                     <el-button type="text" @click="doInstall(module)">安装</el-button>
+                                    <el-button type="primary" @click="installOtherVersion(module)"  plain size="mini">其他版本<i class="el-icon-plus el-icon--right"></i></el-button>
                                 </div>
+                                <a v-if="module._isInstalled &&  !module._isLocal && versionCompare(module.latestVersion,module._localVersion)>0"
+                                   style="color: red;margin-right: 15px" type="text"
+                                   @click="doUpgrade(module)"><i class="el-icon-top">升级</i>
+                                </a>
                                 <a v-if="module._isInstalled && module._isEnabled" style="color: red;margin-right: 15px"
                                    type="text"
                                    @click="doDisable(module)">
@@ -67,6 +70,7 @@
                                    style="color: red;margin-right: 15px" type="text"
                                    @click="doUpgrade(module)"><i class="el-icon-top">升级</i>
                                 </a>
+                                <a href="javascript:;" v-else style="color:  #A8A8A8">{{module.description}}</a>
                             </div>
                         </div>
                     </el-card>
@@ -156,6 +160,42 @@
                 <el-button type="danger" @click="commandDialogShow=false" size="mini">关闭</el-button>
             </div>
         </el-dialog>
+        <el-dialog :visible.sync="versionShow"
+                   :show-close="commandDialogFinish"
+                   :close-on-press-escape="false"
+                   :close-on-click-modal="false"
+                   append-to-body>
+            <div slot="title">
+                <div class="ub-text-bold ub-text-primary">
+                   选择其他版本
+                </div>
+            </div>
+            <el-table
+                :data="releasesData"
+                style="width: 100%">
+                <el-table-column
+                    prop="version"
+                    label="版本号"
+                    width="180">
+                </el-table-column>
+                <el-table-column
+                    prop="feature"
+                    label="描述"
+                    width="180">
+                </el-table-column>
+                <el-table-column
+                    prop="created_at"
+                    label="日期">
+                </el-table-column>
+                <el-table-column
+                    prop="address"
+                    label="操作">
+                    <template slot-scope="scope">
+                        <el-button type="text" size="small" @click="doInstallOtherVersion(installOtherVersionModule,scope.row.version)">安装</el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+        </el-dialog>
     </div>
 
 </template>
@@ -172,6 +212,9 @@ import axios from 'axios';
 export default {
     data() {
         return {
+            versionShow:false,
+            installOtherVersionModule:null,
+            releasesData: [],
             search: {
                 tab: 'appstore',
                 priceType: 'all',
@@ -245,6 +288,11 @@ export default {
         }
     },
     methods: {
+        installOtherVersion(module){
+            this.installOtherVersionModule = module
+            this.releasesData = module.releases
+            this.versionShow = true
+        },
         versionCompare(left, right) {
             let a = left.split('.'), b = right.split('.')
 
@@ -348,6 +396,13 @@ export default {
                 version: module.latestVersion,
                 isLocal: module._isLocal
             }, null, `安装模块 ${module.title}（${module.name}） V${module.latestVersion}`)
+        },
+        doInstallOtherVersion(module,version){
+            this.doCommand('install', {
+                module: module.name,
+                version: version,
+                isLocal: module._isLocal
+            }, null, `安装模块 ${module.title}（${module.name}） V${version}`)
         },
         doUninstall(module) {
             this.$confirm('确认卸载?', '提示', {

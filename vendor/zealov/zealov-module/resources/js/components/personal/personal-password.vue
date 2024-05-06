@@ -6,7 +6,7 @@
       <div style="margin-top: 50px">
         <el-form ref="updateForm" :model="updateForm" label-width="90px" size="medium">
           <el-form-item
-            label="密码"
+            label="新密码"
             prop="title"
             :error="updateError.password ? updateError.password[0] : ''"
           >

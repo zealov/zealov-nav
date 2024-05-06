@@ -30,13 +30,14 @@ class CreateRequest extends FormRequest
     {
 
         return [
-            'name' => ['required', 'string', 'unique:categories', 'between:2,60'],
-            'label' => ['required', 'string', 'unique:categories', 'between:2,60','regex:/^[0-9a-zA-Z_]{1,}$/'],
-            'parent_id' => ['nullable', 'integer'],
-            'published' => ['nullable', 'integer'],
-            'image_path' => ['nullable', 'string'],
+            'name'        => ['required', 'string', 'unique:categories', 'between:2,60'],
+            'label'       => ['required', 'string', 'unique:categories', 'between:2,60', 'regex:/^[0-9a-zA-Z_]{1,}$/'],
+            'parent_id'   => ['nullable', 'integer'],
+            'published'   => ['nullable', 'integer'],
+            'image_path'  => ['nullable', 'string'],
             'description' => ['nullable', 'string'],
-            'sort' => ['nullable', 'integer'],
+            'sort'        => ['nullable', 'integer'],
+            'place'       => ['nullable']
         ];
     }
 
@@ -48,7 +49,7 @@ class CreateRequest extends FormRequest
     public function attributes()
     {
         return [
-            'name' => __('message.category.name'),
+            'name'  => __('message.category.name'),
             'label' => __('message.category.label'),
         ];
     }

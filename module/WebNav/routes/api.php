@@ -26,6 +26,7 @@ Route::delete('WebNav/category/{id}', [CategoryController::class, 'destroy']);
 Route::post('WebNav/config', [ConfigController::class, 'store']);
 Route::put('WebNav/config/{id}', [ConfigController::class, 'update']);
 Route::get('WebNav/config', [ConfigController::class, 'index']);
+Route::get('WebNav/siteTemplate', [ConfigController::class, 'siteTemplate']);
 Route::get('WebNav/config/group', [ConfigController::class, 'group']);
 Route::get('WebNav/config/{id}', [ConfigController::class, 'show']);
 

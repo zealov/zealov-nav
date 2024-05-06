@@ -314,14 +314,29 @@
                         :data="uploadData"
                     >
                         <img
-                            v-if="updateSiteConfigForm.value"
+                            v-if="editImageUrlPreview"
                             :src="editImageUrlPreview"
                             class="thumb"
                         />
                         <i v-else class="el-icon-plus"></i>
                     </el-upload>
                 </el-form-item>
+                <el-form-item label="值" required v-if="updateSiteConfigForm.type=='select'">
+                    <el-select
+                        v-model="updateSiteConfigForm.value"
+                        placeholder="请选择"
+                    >
+                        <el-option
+                            v-for="item in siteTemplateData"
+                            :key="item.value"
+                            :label="item.label"
+                            :value="item.value"
+                        >
+                        </el-option>
+                    </el-select>
+                </el-form-item>
                 <el-form-item
+                    v-else
                     prop="value"
                     label="值"
                     :error="updateError.value ? updateError.value[0] : ''"
@@ -348,7 +363,7 @@
 </template>
 
 <script>
-import {store, index, show, update, group} from '../api/config'
+import {store, index, show, update, group,siteTemplate} from '../api/config'
 import {getBaseApi, getBaseHost} from "@/utils/index";
 import { getToken } from "@/utils/auth";
 export default {
@@ -364,6 +379,7 @@ export default {
             createError: {},
             createSiteConfigVisible: false,
             group_options: [],
+            siteTemplateData:[],
             filter: {
                 keywords: "",
             },
@@ -380,6 +396,10 @@ export default {
                 {
                     value: "file",
                     label: "文件",
+                },
+                {
+                    value: "select",
+                    label: "模板选择",
                 }
             ],
             createSiteConfigForm: {
@@ -401,14 +421,21 @@ export default {
         }
     },
     created() {
+        this.getSiteTemplate()
         this.getSiteConfig()
         this.getSiteConfigGroup()
         this.setAction();
         this.setHeader()
     },
     methods: {
+        getSiteTemplate(){
+            siteTemplate().then((response) => {
+                this.siteTemplateData = response.data.data
+                console.log(response)
+            })
+        },
         setAction() {
-            this.action = getBaseApi() + "/blog/file/upload";
+            this.action = getBaseApi() + "/WebNav/file/upload";
         },
         setHeader() {
             this.headers = {

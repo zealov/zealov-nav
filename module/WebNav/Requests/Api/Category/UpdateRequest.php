@@ -10,6 +10,7 @@ use Module\WebNav\Models\Navigation;
 class UpdateRequest extends FormRequest
 {
     public $category;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -30,14 +31,15 @@ class UpdateRequest extends FormRequest
     {
 
         return [
-            'id' => ['required', 'integer',],
-            'name' => ['required', 'string', Rule::unique('categories')->ignore($this->category), 'between:2,60'],
-            'label' => ['required', 'string', Rule::unique('categories')->ignore($this->category), 'between:2,60','regex:/^[0-9a-zA-Z_]{1,}$/'],
-            'parent_id' => ['nullable', 'integer'],
-            'published' => ['nullable', 'integer'],
-            'image_path' => ['nullable', 'string'],
+            'id'          => ['required', 'integer',],
+            'name'        => ['required', 'string', Rule::unique('categories')->ignore($this->category), 'between:2,60'],
+            'label'       => ['required', 'string', Rule::unique('categories')->ignore($this->category), 'between:2,60', 'regex:/^[0-9a-zA-Z_]{1,}$/'],
+            'parent_id'   => ['nullable', 'integer'],
+            'published'   => ['nullable', 'integer'],
+            'image_path'  => ['nullable', 'string'],
             'description' => ['nullable', 'string'],
-            'sort' => ['nullable', 'integer'],
+            'sort'        => ['nullable', 'integer'],
+            'place'       => ['nullable']
         ];
     }
 
@@ -49,13 +51,13 @@ class UpdateRequest extends FormRequest
     public function attributes()
     {
         return [
-            'name' => __('message.category.name'),
-            'label' => __('message.category.label'),
-            'parent_id' => __('message.category.parent_id'),
-            'published' => __('message.category.published'),
-            'image_path' => __('message.category.image_path'),
+            'name'        => __('message.category.name'),
+            'label'       => __('message.category.label'),
+            'parent_id'   => __('message.category.parent_id'),
+            'published'   => __('message.category.published'),
+            'image_path'  => __('message.category.image_path'),
             'description' => __('message.category.description'),
-            'sort' => __('message.category.sort'),
+            'sort'        => __('message.category.sort'),
         ];
     }
 }

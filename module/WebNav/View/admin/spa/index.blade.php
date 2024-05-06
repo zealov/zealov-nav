@@ -5,8 +5,8 @@
     $config = [
         'appName' => config('app.name'),
     ];
-    $appJs = mix('/js/app.js','/module/WebNav/');
-    $appCss = mix('/css/app.css','/module/WebNav/');
+    $appJs = mix('/js/app.js','/module/WebNav/back/');
+    $appCss = mix('/css/app.css','/module/WebNav/back/');
 @endphp
 <!DOCTYPE html>
 <head>

@@ -35,3 +35,9 @@ export function show(id) {
         method: "get",
     });
 }
+export function siteTemplate(){
+    return request({
+        url: "/WebNav/siteTemplate/",
+        method: "get",
+    });
+}
