@@ -12,10 +12,10 @@ namespace Module\WebNav\Api\Controller;
 use App\Http\Controllers\Controller;
 use MarcinOrlowski\ResponseBuilder\ResponseBuilder;
 use Module\WebNav\Models\Category;
-use Module\WebNav\Requests\Api\CateGory\CreateRequest;
-use Module\WebNav\Requests\Api\CateGory\GetListRequest;
-use Module\WebNav\Requests\Api\CateGory\UpdateRequest;
-use Module\WebNav\Requests\Api\CateGory\UpdateSortRequest;
+use Module\WebNav\Requests\Api\Category\CreateRequest;
+use Module\WebNav\Requests\Api\Category\GetListRequest;
+use Module\WebNav\Requests\Api\Category\UpdateRequest;
+use Module\WebNav\Requests\Api\Category\UpdateSortRequest;
 use Zealov\Kernel\Response\ApiCode;
 
 class CategoryController extends Controller
