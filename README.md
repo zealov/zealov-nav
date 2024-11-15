@@ -19,7 +19,9 @@
 5. DB_USERNAME=
 6. DB_PASSWORD=
 
-### 登录账号
+### 登录信息
+登录地址：http://localhost/admin/home
 账号：admin
 密码：123456
-
+ 
+注意地址：http://localhost 是自己的域名
