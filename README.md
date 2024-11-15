@@ -19,4 +19,7 @@
 5. DB_USERNAME=
 6. DB_PASSWORD=
 
+### 登录账号
+账号：admin
+密码：123456
 
