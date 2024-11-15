@@ -20,7 +20,9 @@
 6. DB_PASSWORD=
 
 ### 登录信息
+
 登录地址：http://localhost/admin/home
+
 账号：admin
 密码：123456
  
