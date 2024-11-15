@@ -24,6 +24,7 @@
 登录地址：http://localhost/admin/home
 
 账号：admin
+
 密码：123456
  
 注意地址：http://localhost 是自己的域名
